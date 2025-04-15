@@ -1,3 +1,2 @@
 # Academy
-HackMyVM
-https://hackmyvm.eu
+[HackMyVM](https://hackmyvm.eu)
