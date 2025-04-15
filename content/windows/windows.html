@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Basic Windows Course</title>
+  <link rel="stylesheet" href="https://hackmyvm.eu/static/boot.css" />
+  <script defer src="script.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      background-color: #1a1a1a;
+    }
+
+    .sidebar {
+      width: 300px;
+      height: 100vh;
+      overflow-y: auto;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
+
+    main {
+      margin-left: 300px;
+      padding: 20px;
+      width: calc(100% - 300px);
+      overflow-x: hidden;
+    }
+
+    header.course-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    header.course-header img {
+      max-height: 100px;
+      border-radius: 10px;
+    }
+
+    .video-thumb {
+      width: 100%;
+      border-radius: 0.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+      }
+
+      main {
+        margin-left: 0;
+        width: 100%;
+      }
+
+      header.course-header {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+    <aside class="sidebar bg-dark text-light p-3">
+        <h2 class="text-center mb-4">Menu</h2>
+        <div class="menu-section mb-4">
+            <a href="../../index.php" class="btn btn-primary w-100">← Back to Academy</a>
+        </div>
+
+        <div class="menu-section mb-4">
+            <h3 class="text-light mb-2">Lessons</h3>
+            <ul class="list-unstyled ps-3">
+                <li><a href="#intro" class="btn btn-primary w-100 mb-1">Introduction to Windows</a></li>
+                <li><a href="#windows-editions" class="btn btn-primary w-100 mb-1">Desktop vs Server Editions & GUI vs Command Line</a></li>
+                <li><a href="#filesystem" class="btn btn-primary w-100 mb-1">Windows File System Basics</a></li>
+                <li><a href="#commands" class="btn btn-primary w-100 mb-1">Essential Commands</a></li>
+                <li><a href="#file-management" class="btn btn-primary w-100 mb-1">File Management in Windows</a></li>
+                <li><a href="#user-management" class="btn btn-primary w-100 mb-1">User Management</a></li>
+                <li><a href="#network-settings" class="btn btn-primary w-100 mb-1">Network Settings</a></li>
+                <li><a href="#cmd-powershell" class="btn btn-primary w-100 mb-1">CMD & PowerShell</a></li>
+            </ul>
+        </div>
+
+        <div class="menu-section mb-4">
+            <h3 class="text-light mb-2">Videos</h3>
+            <ul class="list-unstyled ps-3">
+                <li class="mb-2">
+                    <a href="https://www.youtube.com/watch?v=Jfvg3CS1X3A" target="_blank" class="text-decoration-none">
+                        <img src="https://img.youtube.com/vi/Jfvg3CS1X3A/0.jpg" alt="Windows Basics Video" class="video-thumb" />
+                        <div class="text-light mt-1">40 Windows Commands you NEED to know (in 10 Minutes)</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.youtube.com/watch?v=XpX2WuqzI0Y" target="_blank" class="text-decoration-none">
+                        <img src="https://img.youtube.com/vi/XpX2WuqzI0Y/0.jpg" alt="PowerShell Video" class="video-thumb" />
+                        <div class="text-light mt-1">The Windows GUI // Windows Fundamentals // EP 2</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.youtube.com/watch?v=4Gpls24j5Gw" target="_blank" class="text-decoration-none">
+                        <img src="https://img.youtube.com/vi/4Gpls24j5Gw/0.jpg" alt="PowerShell Video" class="video-thumb" />
+                        <div class="text-light mt-1">Navigating With Windows Terminal // Windows Fundamentals // EP 4</div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="menu-section">
+            <h3 class="text-light mb-2">Resources</h3>
+            <ul class="list-unstyled ps-3">
+                <li><a href="https://docs.microsoft.com/en-us/windows/" target="_blank" class="btn btn-secondary w-100 mb-1">Windows Docs</a></li>
+                <li><a href="https://ss64.com/nt/" target="_blank" class="btn btn-secondary w-100 mb-1">CMD Cheatsheet</a></li>
+                <li><a href="https://ss64.com/ps/" target="_blank" class="btn btn-secondary w-100">PowerShell Commands</a></li>
+            </ul>
+        </div>
+
+        <iframe src="https://discord.com/widget?id=756601039053914243&theme=dark" style="margin-top: 30px" width="100%" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+
+    </aside>
+
+    <main>
+        <div class="container-fluid">
+            <header class="course-header text-light my-4">
+                <img src="img/windows.jpg" alt="Course Logo" />
+                <h1>Basic Windows Course</h1>
+            </header>
+
+            <!-- Lessons -->
+            <!-- Introduction to Linux -->
+            <section id="intro" class="bg-secondary bg-opacity-25 rounded p-4 mb-4">
+                <div class="card bg-dark text-light">
+                    <div class="card-body d-flex justify-content-between align-items-center">
+                        <div>
+                            <h2 class="card-title">Introduction to Windows</h2>
+                            <p>
+                                Windows is a widely-used <code>operating system</code> developed by Microsoft. Known for its user-friendly graphical interface, it's the standard OS for personal and enterprise computing across the world.
+                            </p>
+            
+                            <h4>What is an Operating System?</h4>
+                            <p>
+                                An <code>operating system (OS)</code> is software that manages computer hardware and software resources while providing services for applications. It allows users to interact with the system via a graphical or command-line interface.
+                            </p>
+            
+                            <h4>Latest Windows Relevant Versions and Their Differences</h4>
+                            <ul>
+                                <li><code>Windows 7</code> – Introduced a more refined user interface and improved performance, but is no longer supported.</li>
+                                <li><code>Windows 10</code> – A major update with enhanced security, virtual desktops, and better integration with cloud services.</li>
+                                <li><code>Windows 11</code> – Features a redesigned interface, improved gaming and productivity tools, and optimized performance.</li>
+                            </ul>
+            
+                            <p>
+                                In this course, you'll learn how to navigate the <code>Windows</code> environment, use command-line tools (<code>CMD</code> & <code>PowerShell</code>), and understand the basics of the <code>Windows file system</code> and <code>system management</code>.
+                            </p>
+                        </div>
+                        <div>
+                            <img src="img/logos.webp" alt="Windows Logo" class="img-fluid" style="max-width: 800px;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Desktop vs Server Editions & GUI vs Command Line -->
+            <section id="windows-editions" class="bg-secondary bg-opacity-25 rounded p-4 mb-4">
+                <div class="card bg-dark text-light">
+                    <div class="card-body">
+                        <h2 class="card-title">Desktop vs Server Editions & GUI vs Command Line</h2>
+                        <p>
+                            Windows offers different editions tailored for personal and enterprise use. Additionally, users can interact with Windows through a graphical interface or command-line tools.
+                        </p>
+            
+                        <h4>Desktop vs Server Editions</h4>
+                        <ul>
+                            <li><code>Windows Desktop</code> – Designed for personal and business use with a user-friendly interface and support for applications like Microsoft Office.</li>
+                            <li><code>Windows Server</code> – Optimized for managing networks, databases, and enterprise-level applications, offering better security, remote access, and server-specific tools.</li>
+                        </ul>
+                        <p>
+                            Example: A standard office laptop runs <code>Windows 10</code>, whereas a corporate web server operates on <code>Windows Server 2019</code>.
+                        </p>
+            
+                        <h4>GUI vs Command Line (PowerShell & CMD)</h4>
+                        <ul>
+                            <li><code>GUI (Graphical User Interface)</code> – Uses windows, icons, and menus for user interaction, making it more intuitive.</li>
+                            <li><code>CMD (Command Prompt)</code> – Basic Windows command-line tool used for administrative tasks like file management and networking.</li>
+                            <li><code>PowerShell</code> – Advanced command-line tool offering scripting capabilities, automation, and system management beyond CMD.</li>
+                        </ul>
+                        <p>
+                            Example: Using <code>GUI</code>, you can click on folders to navigate, while in <code>CMD</code>, you use <code>cd</code> to move between directories. PowerShell allows running scripts to automate tasks efficiently.
+                        </p>
+            
+                        <hr class="bg-light">
+            
+                        <h4>Practice Challenge</h4>
+                        <ul>
+                            <li>Check your Windows edition using <code>winver</code> in CMD.</li>
+                            <li>Open PowerShell and run <code>Get-ComputerInfo</code> to explore system details.</li>
+                            <li>Compare using File Explorer (GUI) vs CMD to navigate folders.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+
+            
+            <!-- File System -->
+            <section id="filesystem" class="bg-secondary bg-opacity-25 rounded p-4 mb-4">
+                <div class="card bg-dark text-light">
+                    <div class="card-body">
+                        <h2 class="card-title">Windows File System & Security Essentials</h2>
+                        <p>
+                            Understanding the Windows file system is crucial for cybersecurity professionals. Windows organizes data in drives, with <code>C:\</code> being the primary system drive where critical files and configurations are stored.
+                        </p>
+                        <hr class="bg-light">
+            
+                        <h4>Lesson 1: Root Drive <code>C:\</code></h4>
+                        <p>
+                            The root drive contains core system files and essential directories. Cybersecurity professionals monitor this area for unauthorized modifications.
+                        </p>
+                        <ul>
+                            <li><code>C:\Windows\System32</code> – Contains critical system executables; often targeted by malware.</li>
+                            <li><code>C:\Users\Public</code> – Shared space between users, prone to unauthorized data leakage.</li>
+                            <li><code>C:\Temp</code> – Used by applications for temporary storage; often exploited for malicious file execution.</li>
+                        </ul>
+            
+                        <h4>Lesson 2: C:\Users (User Profiles & Security)</h4>
+                        <p>
+                            Each user has a personal directory under <code>C:\Users</code>, where sensitive personal files and configurations are stored.
+                        </p>
+                        <ul>
+                            <li><code>C:\Users\Username\AppData\Roaming</code> – Contains user-specific application data, often leveraged in persistence mechanisms.</li>
+                            <li><code>C:\Users\Username\Downloads</code> – A frequent location for malware execution; ensure files are verified before opening.</li>
+                            <li><code>C:\Users\Username\Desktop</code> – Attackers may store malicious shortcuts or scripts in this directory.</li>
+                        </ul>
+            
+                        <h4>Lesson 3: C:\Windows (Critical System Directory)</h4>
+                        <p>
+                            The Windows directory hosts OS-specific configurations and executable files. Unauthorized modifications here can indicate system compromise.
+                        </p>
+                        <ul>
+                            <li><code>C:\Windows\System32\drivers\etc\hosts</code> – Often modified by malware to redirect network requests.</li>
+                            <li><code>C:\Windows\Prefetch</code> – Useful for forensic analysis of recent program executions.</li>
+                            <li><code>C:\Windows\SysWOW64</code> – System directory for 32-bit applications on 64-bit Windows.</li>
+                        </ul>
+            
+                        <h4>Lesson 4: Program Files / Program Files (x86) (Software Security)</h4>
+                        <p>
+                            This directory contains installed applications. Attackers may abuse this location for persistence or privilege escalation.
+                        </p>
+                        <ul>
+                            <li><code>C:\Program Files</code> – Default storage for 64-bit applications.</li>
+                            <li><code>C:\Program Files (x86)</code> – Stores 32-bit applications.</li>
+                            <li>Monitor software installed here for unauthorized or unexpected programs.</li>
+                        </ul>
+            
+                        <hr class="bg-light">
+                        <h4>Cybersecurity Practice Challenge</h4>
+                        <ul>
+                            <li>Identify system-critical files in <code>C:\Windows\System32</code> using <code>dir /s</code> or <code>ls</code> (WSL).</li>
+                            <li>Analyze the <code>C:\Windows\Prefetch</code> directory for traces of recent executions.</li>
+                            <li>Check user profiles in <code>C:\Users</code> for suspicious files using <code>dir /A</code> to reveal hidden folders.</li>
+                            <li>Monitor installed applications in <code>Program Files</code> for unauthorized software.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Commands -->
+            <section id="commands" class="bg-secondary bg-opacity-25 rounded p-4 mb-4">
+                <div class="card bg-dark text-light">
+                    <div class="card-body">
+                        <h2 class="card-title">Essential Windows Security Commands</h2>
+                        <p>These Windows command-line tools help analyze security threats, manage access controls, and monitor system integrity.</p>
+            
+                        <h4>System Security & Information Gathering</h4>
+                        <ul>
+                            <li><code>systeminfo</code> – Displays detailed system information, including OS version, installed updates, and hardware details.</li>
+                            <li><code>wmic</code> – A powerful Windows Management Instrumentation tool for retrieving system details, managing processes, and monitoring services.</li>
+                            <li><code>hostname</code> – Returns the computer’s network name, useful for identifying systems in a network.</li>
+                            <li><code>whoami</code> – Shows the current user logged into the system along with privilege details.</li>
+                            <li><code>net user</code> – Lists all local user accounts and their status, helping administrators monitor account security.</li>
+                        </ul>
+            
+                        <h4>Network Security & Threat Analysis</h4>
+                        <ul>
+                            <li><code>ipconfig</code> – Displays network adapter configurations, including assigned IP addresses, DNS settings, and active connections.</li>
+                            <li><code>netstat</code> – Shows active network connections, open ports, and associated processes, helping detect unauthorized activity.</li>
+                            <li><code>arp</code> – Displays the ARP table, which maps IP addresses to MAC addresses, useful for detecting MITM (Man-in-the-Middle) attacks.</li>
+                            <li><code>route</code> – Displays the system’s routing table, showing how network traffic is directed.</li>
+                            <li><code>tracert</code> – Traces the route packets take to reach a destination, identifying connection issues or network interception points.</li>
+                        </ul>
+            
+                        <h4>Process & Malware Detection</h4>
+                        <ul>
+                            <li><code>tasklist</code> – Lists all running processes along with their memory usage and associated services.</li>
+                            <li><code>taskkill</code> – Allows the termination of running processes, useful for stopping malicious or unresponsive applications.</li>
+                            <li><code>Get-EventLog</code> – Retrieves event logs related to security, helping analyze system activity for unauthorized changes.</li>
+                            <li><code>Get-WmiObject</code> – Queries system processes and services using Windows Management Instrumentation (WMI), often used for forensic investigations.</li>
+                        </ul>
+            
+                        <h4>File System Integrity & Incident Response</h4>
+                        <ul>
+                            <li><code>dir</code> – Lists the contents of directories, including files and subdirectories.</li>
+                            <li><code>attrib</code> – Modifies file attributes, such as hiding files or restoring access to restricted files.</li>
+                            <li><code>Get-FileHash</code> – Computes a cryptographic hash of a file, useful for verifying file integrity and detecting tampering.</li>
+                            <li><code>icacls</code> – Displays and modifies file permissions, helping secure sensitive data.</li>
+                            <li><code>cipher</code> – Securely wipes free disk space to prevent the recovery of deleted files.</li>
+                        </ul>
+            
+                        <h4>Windows Log & Forensic Investigation</h4>
+                        <ul>
+                            <li><code>wevtutil</code> – Retrieves and manages Windows Event logs, essential for analyzing security incidents.</li>
+                            <li><code>auditpol</code> – Displays and configures audit policies, helping track system integrity and unauthorized access attempts.</li>
+                            <li><code>fsutil</code> – Provides advanced file system utilities, such as retrieving NTFS change journal entries.</li>
+                            <li><code>schtasks</code> – Lists scheduled tasks, helping detect persistent threats using automated executions.</li>
+                            <li><code>Get-WinEvent</code> – Queries Windows security logs to identify signs of compromise or suspicious activity.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+              
+            
+            <!-- File Management -->
+            <section id="file-management" class="bg-secondary bg-opacity-25 rounded p-4 mb-4">
+                <div class="card bg-dark text-light">
+                    <div class="card-body">
+                        <h2 class="card-title">Managing Files and Folders in Windows</h2>
+                        <p>
+                            Understanding how to create, rename, move, and delete files or folders is fundamental to file management. Windows provides multiple ways to handle files efficiently using both graphical and command-line tools.
+                        </p>
+            
+                        <h4>Creating, Renaming, Moving, and Deleting Files/Folders</h4>
+                        <ul>
+                            <li><code>mkdir foldername</code> – Creates a new folder</li>
+                            <li><code>ren oldname newname</code> – Renames a file or folder</li>
+                            <li><code>move source destination</code> – Moves a file or folder</li>
+                            <li><code>del filename</code> – Deletes a file</li>
+                            <li><code>rmdir foldername</code> – Deletes an empty folder</li>
+                        </ul>
+                        <p>
+                            Example: <code>mkdir Documents</code> creates a folder named "Documents."
+                        </p>
+            
+                        <h4>File Extensions and Types</h4>
+                        <p>File extensions indicate the format and usage of a file.</p>
+                        <ul>
+                            <li><code>.txt</code> – Plain text file</li>
+                            <li><code>.jpg</code>, <code>.png</code> – Image files</li>
+                            <li><code>.exe</code> – Executable program</li>
+                            <li><code>.docx</code>, <code>.xlsx</code> – Microsoft Office documents</li>
+                            <li><code>.zip</code> – Compressed archive file</li>
+                        </ul>
+                        <p>
+                            Example: A file named <code>report.docx</code> is a Word document.
+                        </p>
+            
+                        <h4>Copy, Cut, and Paste Operations</h4>
+                        <ul>
+                            <li><code>copy source destination</code> – Copies a file or folder to another location</li>
+                            <li><code>xcopy /s source destination</code> – Copies directories and their contents</li>
+                            <li><code>Ctrl + C</code> – Copy (GUI)</li>
+                            <li><code>Ctrl + X</code> – Cut (GUI)</li>
+                            <li><code>Ctrl + V</code> – Paste (GUI)</li>
+                        </ul>
+                        <p>
+                            Example: <code>copy notes.txt D:\Backup</code> copies "notes.txt" to a Backup folder on drive D.
+                        </p>
+            
+                        <h4>Hidden/System Files and Folder Options</h4>
+                        <ul>
+                            <li><code>attrib +h filename</code> – Hides a file</li>
+                            <li><code>attrib -h filename</code> – Unhides a file</li>
+                            <li><code>dir /a:h</code> – Lists hidden files</li>
+                            <li>Enable "Show hidden files" in File Explorer to view hidden files</li>
+                        </ul>
+                        <p>
+                            Example: <code>attrib +h secret.txt</code> hides "secret.txt" from normal view.
+                        </p>
+            
+                        <hr class="bg-light">
+            
+                        <h4>Practice Challenge</h4>
+                        <ul>
+                            <li>Create a folder using <code>mkdir</code> and place a file inside.</li>
+                            <li>Rename a file using <code>ren</code>.</li>
+                            <li>Copy and move a file using <code>copy</code> and <code>move</code>.</li>
+                            <li>Try hiding a file using <code>attrib +h</code>, then unhide it.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- User Management -->
+            <section id="user-management" class="bg-secondary bg-opacity-25 rounded p-4 mb-4">
+                <div class="card bg-dark text-light">
+                    <div class="card-body">
+                        <h2 class="card-title">Creating and Switching Users</h2>
+                        <p>
+                            Windows allows multiple user accounts to manage access and permissions efficiently. Below are key commands and methods for creating and switching users.
+                        </p>
+            
+                        <h4>Creating a New User Account</h4>
+                        <ul>
+                            <li><code>net user username password /add</code> – Creates a new user account.</li>
+                            <li><code>Control Panel &gt; User Accounts</code> – Allows graphical user management.</li>
+                            <li><code>Settings &gt; Accounts &gt; Family &amp; Other Users</code> – Adds new accounts in modern Windows versions.</li>
+                        </ul>
+                        <p>Example: <code>net user JohnDoe mypassword /add</code> adds a user named "JohnDoe".</p>
+            
+                        <h4>Switching Users</h4>
+                        <ul>
+                            <li><code>shutdown /l</code> – Logs out the current user.</li>
+                            <li><code>Ctrl + Alt + Delete &gt; Switch User</code> – Graphically switches users.</li>
+                            <li><code>Fast User Switching</code> – Allows switching between accounts without logging out completely.</li>
+                        </ul>
+            
+                        <h4>Administrator vs Standard Accounts</h4>
+                        <ul>
+                            <li><code>Administrator Account</code> – Has full system access, can install programs, change settings, and manage security configurations.</li>
+                            <li><code>Standard Account</code> – Restricted access, used for daily activities while preventing unauthorized system changes.</li>
+                            <li><code>Guest Account</code> – Temporary account with minimal permissions (disabled by default).</li>
+                        </ul>
+                        <p>
+                            Example: Administrators can install software, while standard users <code>cannot</code> modify critical system settings.
+                        </p>
+            
+                        <hr class="bg-light">
+            
+                        <h4>Practice Challenge</h4>
+                        <ul>
+                            <li>Create a new user using <code>net user</code>.</li>
+                            <li>Switch between users using graphical and command-line methods.</li>
+                            <li>Check your account type using <code>net user username</code>.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Network Settings -->
+            <section id="network-settings" class="bg-secondary bg-opacity-25 rounded p-4 mb-4">
+                <div class="card bg-dark text-light">
+                    <div class="card-body">
+                        <h2 class="card-title">Viewing IP Address & File Sharing on LAN</h2>
+                        <p>
+                            Managing network settings in Windows involves checking IP addresses and setting up file sharing for local networks (LAN). Below are the essential methods.
+                        </p>
+            
+                        <h4>Viewing IP Address</h4>
+                        <ul>
+                            <li><code>ipconfig</code> – Displays network configuration details, including assigned IP addresses.</li>
+                            <li><code>ipconfig /all</code> – Provides detailed information about all network adapters.</li>
+                            <li><strong>GUI Method:</strong> Open <code>Settings &gt; Network &amp; Internet &gt; Status</code> and click on "Properties" for your active connection.</li>
+                        </ul>
+                        <p>Example: Running <code>ipconfig</code> in Command Prompt shows your IPv4 address.</p>
+            
+                        <h4>File Sharing Basics on LAN</h4>
+                        <ul>
+                            <li>Enable <code>Network Discovery</code> in <code>Control Panel &gt; Network and Sharing Center</code>.</li>
+                            <li>Right-click a folder &gt; Select <code>Properties</code> &gt; Go to the <code>Sharing</code> tab &gt; Click "Share" to allow access.</li>
+                            <li>Use <code>\\ComputerName\SharedFolder</code> in File Explorer to access shared folders on another LAN-connected PC.</li>
+                            <li>For advanced sharing, configure permissions in <code>Advanced Sharing</code> settings.</li>
+                        </ul>
+                        <p>Example: Sharing a folder allows multiple users on the same network to access files easily.</p>
+            
+                        <h4>Sharing a Folder from CMD</h4>
+                        <ul>
+                            <li><code>net share ShareName=C:\Path\To\Folder /grant:UserName,full</code> – Shares a folder with specific user access.</li>
+                            <li><code>net share</code> – Lists all currently shared folders.</li>
+                            <li><code>net share ShareName /delete</code> – Stops sharing a specific folder.</li>
+                        </ul>
+                        <p>Example: <code>net share PublicFiles=C:\Users\Public /grant:Everyone,read</code> shares the Public folder with read-only access.</p>
+            
+                        <h4>Accessing a Shared Folder from CMD</h4>
+                        <ul>
+                            <li><code>net use Z: \\ComputerName\SharedFolder /persistent:yes</code> – Maps the shared folder as a network drive.</li>
+                            <li><code>dir \\ComputerName\SharedFolder</code> – Lists the files inside a shared folder.</li>
+                            <li><code>net use Z: /delete</code> – Disconnects the mapped network drive.</li>
+                        </ul>
+                        <p>Example: <code>net use Z: \\OfficePC\Documents /persistent:yes</code> maps the shared "Documents" folder from a computer named "OfficePC."</p>
+            
+                        <h4>Discovering Shared Folders on a Host via CMD</h4>
+                        <ul>
+                            <li><code>net view \\ComputerName</code> – Lists all shared resources on a specific computer.</li>
+                            <li><code>net view</code> – Displays available shared computers on the network.</li>
+                            <li><code>wmic share get name,path</code> – Retrieves a list of shared folders and their locations.</li>
+                        </ul>
+                        <p>Example: Running <code>net view \\Workstation1</code> shows all shared folders on "Workstation1."</p>
+            
+                        <hr class="bg-light">
+            
+                        <h4>Practice Challenge</h4>
+                        <ul>
+                            <li>Check your IP address using both <code>ipconfig</code> and the GUI method.</li>
+                            <li>Share a folder via CMD using <code>net share</code> and confirm it using <code>net view</code>.</li>
+                            <li>Access a shared folder using <code>net use</code> and navigate its contents.</li>
+                            <li>Discover shared resources on a LAN-connected device using <code>net view \\ComputerName</code>.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CMD vs PowerShell & Automation -->
+            <section id="cmd-powershell" class="bg-secondary bg-opacity-25 rounded p-4 mb-4">
+                <div class="card bg-dark text-light">
+                    <div class="card-body">
+                        <h2 class="card-title">CMD vs PowerShell & Automation</h2>
+                        <p>
+                            The Windows Command Prompt (<code>CMD</code>) and <code>PowerShell</code> are powerful tools used for system administration and automation.
+                        </p>
+            
+                        <h4>Opening CMD and PowerShell</h4>
+                        <ul>
+                            <li>Press <code>Win + R</code>, type <code>cmd</code>, and press <code>Enter</code> to open Command Prompt.</li>
+                            <li>Press <code>Win + R</code>, type <code>powershell</code>, and press <code>Enter</code> to open PowerShell.</li>
+                            <li>Right-click the Start menu and select <code>Command Prompt</code> or <code>PowerShell</code>.</li>
+                            <li>Search for <code>cmd</code> or <code>PowerShell</code> in the Windows Start menu.</li>
+                        </ul>
+            
+                        <h4>Difference Between CMD and PowerShell</h4>
+                        <table class="table table-dark table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Feature</th>
+                                    <th>CMD</th>
+                                    <th>PowerShell</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Purpose</td>
+                                    <td>Basic command-line interface for executing system commands</td>
+                                    <td>Advanced scripting environment for automation and system management</td>
+                                </tr>
+                                <tr>
+                                    <td>Syntax</td>
+                                    <td>Uses simple DOS-style commands (e.g., <code>dir</code>, <code>copy</code>)</td>
+                                    <td>Uses objects and scripting (e.g., <code>Get-Process</code>, <code>Set-ExecutionPolicy</code>)</td>
+                                </tr>
+                                <tr>
+                                    <td>Script Support</td>
+                                    <td>Runs basic batch files (<code>.bat</code>)</td>
+                                    <td>Supports complex automation scripts (<code>.ps1</code>)</td>
+                                </tr>
+                                <tr>
+                                    <td>Usage</td>
+                                    <td>Common for quick tasks, basic file management</td>
+                                    <td>Used by administrators for automation, configuration, and system management</td>
+                                </tr>
+                            </tbody>
+                        </table>
+            
+                        <h4>Simple Automation with Batch and PowerShell Scripts</h4>
+            
+                        <h5>Batch Script Example: Auto-Creating a Folder</h5>
+                        <p>Save this as <code>create_folder.bat</code>:</p>
+                        <code>
+                            @echo off<br>
+                            mkdir C:\MyFolder<br>
+                            echo Folder Created Successfully!<br>
+                            pause
+                        </code>
+                        <p>Double-click the file to run it.</p>
+            
+                        <h5>PowerShell Script Example: Checking System Uptime</h5>
+                        <p>Save this as <code>check_uptime.ps1</code>:</p>
+                        <code>
+                            $uptime = (Get-CimInstance Win32_OperatingSystem).LastBootUpTime<br>
+                            Write-Host "System last restarted on: $uptime"
+                        </code>
+                        <p>Run this in PowerShell using <code>powershell -ExecutionPolicy Bypass -File check_uptime.ps1</code>.</p>
+            
+                        <hr class="bg-light">
+            
+                        <h4>Practice Challenge</h4>
+                        <ul>
+                            <li>Open CMD and PowerShell using different methods.</li>
+                            <li>Try running a basic <code>dir</code> command in CMD and <code>Get-Process</code> in PowerShell.</li>
+                            <li>Create a batch script to automate a simple file task.</li>
+                            <li>Write a PowerShell script to retrieve system information.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Basic Linux Course</title> 
+  <link rel="stylesheet" href="https://hackmyvm.eu/static/boot.css" />
+  <script defer src="script.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      background-color: #1a1a1a;
+    }
+
+    .sidebar {
+      width: 300px;
+      height: 100vh;
+      overflow-y: auto;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
+
+    main {
+      margin-left: 300px;
+      padding: 20px;
+      width: calc(100% - 300px);
+      overflow-x: hidden;
+    }
+
+    header.course-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    header.course-header img {
+      max-height: 100px;
+      border-radius: 10px;
+    }
+
+    .video-thumb {
+      width: 100%;
+      border-radius: 0.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+      }
+
+      main {
+        margin-left: 0;
+        width: 100%;
+      }
+
+      header.course-header {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar bg-dark text-light p-3" role="navigation" aria-label="Sidebar Navigation">
+        <h2 class="text-center mb-4">Menu</h2>
+
+        <!-- Back to Main Academy -->
+        <div class="menu-section mb-4">
+        <a href="../../index.php" class="btn btn-primary w-100">← Back to Academy</a>
+        </div>
+
+        <!-- Lessons -->
+        <div class="menu-section mb-4">
+        <h3 class="text-light mb-2">Lessons</h3>
+        <ul class="list-unstyled ps-3">
+            <li><a href="#intro" class="btn btn-primary w-100 mb-1">Introduction to Linux</a></li>
+            <li><a href="#filesystem" class="btn btn-primary w-100 mb-1">Linux File System</a></li>
+            <li><a href="#commands" class="btn btn-primary w-100 mb-1">Essential Linux Commands</a></li>
+            <li><a href="#permissions" class="btn btn-primary w-100 mb-1">Linux Permissions</a></li>
+            <li><a href="#shell-basics" class="btn btn-primary w-100 mb-1">Linux Shell Basics</a></li>
+            <li><a href="#files-directories" class="btn btn-primary w-100 mb-1">Files and Directories</a></li>
+            <li><a href="#networking-basics" class="btn btn-primary w-100 mb-1">Networking Basics</a></li>
+            <li><a href="#shell-scripting" class="btn btn-primary w-100 mb-1">Shell Scripting Basics</a></li>
+            <li><a href="#security-basics" class="btn btn-primary w-100 mb-1">Security Basics</a></li>
+        </ul>
+        </div>
+
+        <!-- Videos -->
+        <div class="menu-section mb-4">
+            <h3 class="text-light mb-2">Videos</h3>
+            <ul class="list-unstyled ps-3">
+                <li class="mb-2">
+                    <a href="https://www.youtube.com/watch?v=gd7BXuUQ91w" target="_blank" class="text-decoration-none">
+                        <img src="https://img.youtube.com/vi/gd7BXuUQ91w/0.jpg" alt="Linux Basics Video" class="video-thumb" />
+                        <div class="text-light mt-1">60 <code>Linux</code> Commands you NEED to know (in 10 minutes)</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.youtube.com/watch?v=sWbUDq4S6Y8" target="_blank" class="text-decoration-none">
+                        <img src="https://img.youtube.com/vi/sWbUDq4S6Y8/0.jpg" alt="Linux Commands Video" class="video-thumb" />
+                        <div class="text-light mt-1">Introduction to <code>Linux</code> – Full Course for Beginners</div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Resources -->
+        <div class="menu-section">
+        <h3 class="text-light mb-2">Resources</h3>
+        <ul class="list-unstyled ps-3">
+            <li><a href="https://www.kernel.org/doc/html/latest/" target="_blank" class="btn btn-secondary w-100 mb-1">Linux Docs</a></li>
+            <li><a href="https://github.com/0nn0/terminal-mac-cheatsheet" target="_blank" class="btn btn-secondary w-100 mb-1">Cheat Sheet</a></li>
+            <li><a href="https://linuxcommand.org/" target="_blank" class="btn btn-secondary w-100">Linux Tutorials</a></li>
+        </ul>
+        </div>
+
+        <iframe src="https://discord.com/widget?id=756601039053914243&theme=dark" style="margin-top: 30px" width="100%" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+    </aside>
+
+     <!-- Main Content -->
+    <main>
+        <div class="container-fluid">
+            <header class="course-header text-light my-4">
+                <img src="img/linux.jpg" alt="Course Logo" />
+                <h1><code>Linux</code> - Basic</h1>
+            </header>
+
+            <!-- Introduction to Linux -->
+            <section id="intro" class="bg-secondary bg-opacity-25 rounded p-4 mb-4">
+                <div class="card bg-dark text-light">
+                    <div class="card-body d-flex justify-content-between align-items-center">
+                        <div class="flex-grow-1">
+                            <h2 class="card-title">Introduction to <code>Linux</code></h2>
+                            <p>
+                                This course introduces you to the world of <code>Linux</code>—an open-source operating system that powers everything from smartphones to servers.
+                                <code>Linux</code> is a powerful, open-source operating system widely used for servers, development, cybersecurity, and personal computing. Based on the <code>Linux kernel</code>, it provides stability, security, and flexibility, making it a preferred choice for tech professionals and enthusiasts.
+                            </p>
+                            <p>
+                                Whether you're new to <code>Linux</code> or looking to enhance your expertise, exploring its various distributions and tools will give you deeper control over your computing environment. 
+                            </p>
+                            <p>
+                                <code>Linux</code> offers several <code>security-focused distributions</code> designed for penetration testing, incident response, and digital forensics. Among the most well-known are <code>Kali Linux</code>, which is widely used for ethical hacking and security assessments, and <code>Parrot OS</code>, offering a balance between privacy and offensive security tools. <code>Exegol</code>, a relatively newer contender, is an advanced container-based environment built for cybersecurity operations, making it easy to set up dedicated workspaces for various security tasks. Other notable distributions include <code>BlackArch</code>, tailored for penetration testers, and <code>Tails</code>, which emphasizes anonymity and secure communications. 
+                            </p>
+                            <p>
+                                For Windows users, <code>WSL (Windows Subsystem for Linux)</code> provides a convenient way to run <code>Linux</code> security tools directly inside Windows, making it easier to use distributions like <code>Kali Linux</code> without needing a separate virtual machine or dual-boot setup. With <code>WSL</code>, professionals can integrate powerful security features while maintaining compatibility with Windows-based workflows.
+                            </p>
+                        </div>
+                        <div class="ms-3">
+                            <img src="img/logos.jpg" alt="Linux Logos" class="img-fluid" style="max-width: 800px;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- File System -->
+            <section id="filesystem" class="bg-secondary bg-opacity-25 rounded p-4 mb-4">
+                <div class="card bg-dark text-light">
+                    <div class="card-body">
+                        <h2 class="card-title"><code>Linux</code> File System</h2>
+                        <p>
+                            Imagine your computer is like a giant digital house. It has different rooms where things are stored, and every room has a special purpose. <code>Linux</code> organizes everything inside a big tree starting from the main root.
+                        </p>
+
+                        <img src="img/root.png" alt="Root Filesystem" class="img-fluid" style="max-width: 400px;">
+            
+                        <hr class="bg-light">
+            
+                        <h4>Root Directory <code>/</code> - The Starting Point</h4>
+                        <p>
+                            The root directory is like the front door to your digital house. Every other folder is inside it.
+                            <br>
+                            Example: <code>cd /</code> takes you to the main root.
+                        </p>
+            
+                        <h4><code>/bin</code> - Toolbox for Commands</h4>
+                        <p>
+                            Inside <code>/bin</code>, you find important tools to help manage your computer, like <code>ls</code> (list files) and <code>bash</code> (your command-line helper).
+                            <br>
+                            Try: <code>ls /bin</code> to see the toolbox.
+                        </p>
+            
+                        <h4><code>/etc</code> - The Rulebook</h4>
+                        <p>
+                            The <code>/etc</code> folder holds important settings for your computer, like passwords and system rules.
+                            <br>
+                            Try: <code>cat /etc/passwd</code> to see user details.
+                        </p>
+            
+                        <h4><code>/home</code> - Your Personal Space</h4>
+                        <p>
+                            The <code>/home</code> folder is like your bedroom. Each person using the computer has their own folder to store pictures, documents, and files.
+                            <br>
+                            Try: <code>cd /home</code> and <code>ls</code> to see different user rooms.
+                        </p>
+            
+                        <h4><code>/var</code> - Logbook and Records</h4>
+                        <p>
+                            The <code>/var</code> folder keeps logs, or the history of what happens in your computer. It's like a diary tracking important events.
+                            <br>
+                            Try: <code>ls /var/log</code> to check logs.
+                        </p>
+            
+                        <h4><code>/usr</code> - The App Storage</h4>
+                        <p>
+                            The <code>/usr</code> folder is like a warehouse where installed apps and useful programs are stored.
+                            <br>
+                            Try: <code>ls /usr/bin | head</code> to peek inside.
+                        </p>
+            
+                        <h4><code>/tmp</code> - The Temporary Space</h4>
+                        <p>
+                            The <code>/tmp</code> folder is like a junk drawer in your house. It holds files that only need to exist for a short time before they are deleted. If your computer needs a quick place to put something while working, it goes here.
+                            <br>
+                            Try: <code>ls /tmp</code> to see what's temporarily stored.
+                        </p>
+            
+                        <h4><code>/opt</code> - Special Storage for Extra Apps</h4>
+                        <p>
+                            The <code>/opt</code> folder is where special extra software is stored. If you install special programs that don't come with <code>Linux</code> by default, they might live here.
+                            <br>
+                            Try: <code>ls /opt</code> to see if your computer has optional software installed.
+                        </p>
+            
+                        <hr class="bg-light">
+            
+                        <h4>Fun Learning Challenge</h4>
+                        <p>Try answering these questions with your terminal:</p>
+                        <ul>
+                            <li>Where do system logs get saved?</li>
+                            <li>What command lists everything in <code>/etc</code>?</li>
+                            <li>How do you go inside your personal home folder?</li>
+                            <li>What is stored in <code>/tmp</code>?</li>
+                            <li>What kind of files can be found in <code>/opt</code>?</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Commands -->
+            <section id="commands" class="bg-secondary bg-opacity-25 rounded p-4 mb-4">
+                <div class="card bg-dark text-light">
+                    <div class="card-body">
+                        <h2 class="card-title">Essential <code>Linux</code> Commands</h2>
+                        <p>
+                            <code>Linux</code> is a foundational tool in cybersecurity and ethical hacking, offering powerful commands for system management, monitoring, and analysis. Below are commonly used commands and what they do.
+                        </p>
+            
+                        <h4>System & User Management</h4>
+                        <ul>
+                            <li><code>whoami</code> – Shows the current logged-in user</li>
+                            <li><code>id</code> – Displays user and group IDs</li>
+                            <li><code>passwd</code> – Changes the current user's password</li>
+                            <li><code>sudo</code> – Executes a command as another user (usually root)</li>
+                            <li><code>groups</code> – Lists the groups the user belongs to</li>
+                        </ul>
+            
+                        <h4>File & Permission Management</h4>
+                        <ul>
+                            <li><code>ls</code> – Lists files and directories</li>
+                            <li><code>find</code> – Searches for files and directories</li>
+                            <li><code>chmod</code> – Modifies file permissions</li>
+                            <li><code>chown</code> – Changes file ownership</li>
+                            <li><code>stat</code> – Displays detailed file information</li>
+                            <li><code>cat</code> – Displays file contents</li>
+                            <li><code>tr</code> – Translates or deletes characters from input</li>
+                            <li><code>awk</code> – Pattern scanning and processing language, useful for data extraction and reporting</li>
+                        </ul>
+            
+                        <h4>Network & Monitoring</h4>
+                        <ul>
+                            <li><code>ifconfig</code> / <code>ip</code> – Displays network configuration</li>
+                            <li><code>netstat</code> – Shows network connections and routing tables</li>
+                            <li><code>ss</code> – Displays socket statistics</li>
+                            <li><code>tcpdump</code> – Captures and analyzes network traffic</li>
+                            <li><code>nmap</code> – Scans networks and identifies open ports and services</li>
+                        </ul>
+            
+                        <h4>Security & Logs Analysis</h4>
+                        <ul>
+                            <li><code>ps</code> – Lists running processes</li>
+                            <li><code>top</code> / <code>htop</code> – Monitors real-time system resource usage</li>
+                            <li><code>journalctl</code> – Views system logs</li>
+                            <li><code>grep</code> – Searches for patterns within text</li>
+                            <li><code>auditctl</code> – Configures auditing rules for system activity monitoring</li>
+                        </ul>
+            
+                        <h4>Other Useful Commands</h4>
+                        <ul>
+                            <li><code>df</code> – Displays disk space usage in a human-readable format</li>
+                            <li><code>mkdir</code> – Create directories</li>
+                            <li><code>touch</code> – Create empty files</li>
+                            <li><code>uname</code> – Displays system information (kernel version, architecture, etc.)</li>
+                            <li><code>kill</code> – Forcefully terminates a process by its Process ID</li>
+                            <li><code>ln</code> – create symlinks (shortcuts) for files or directories</li>
+                            <li><code>ping</code> – Tests network connectivity to a specific host</li>
+                            <li><code>tar</code> – Creates a compressed archive of a directory</li>
+                            <li><code>scp</code> – Securely copies files between machines</li>
+                            <li><code>env</code> – Lists environment variables used by the system</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>            
+            
+
+            <!-- Permissions -->
+            <section id="permissions" class="bg-secondary bg-opacity-25 rounded p-4 mb-4">
+                <div class="card bg-dark text-light">
+                    <div class="card-body">
+                        <h2 class="card-title">Understanding <code>Linux</code> Permissions</h2>
+                        <p>
+                            In <code>Linux</code>, every file and folder has some rules about who can do what with it. It's like having toys in a toy box:
+                        </p>
+                        <ul>
+                            <li><strong>Owner</strong>: The person who owns the toy (file).</li>
+                            <li><strong>Group</strong>: A group of friends who are allowed to play with it.</li>
+                            <li><strong>Others</strong>: Everyone else who might want to play.</li>
+                        </ul>
+                        <p>
+                            Each person can have three kinds of permissions:
+                        </p>
+                        <ul>
+                            <li><code>r</code> (read) – You can look at it, like reading a book.</li>
+                            <li><code>w</code> (write) – You can change it, like drawing in a coloring book.</li>
+                            <li><code>x</code> (execute) – You can run it, like pressing a button to start a toy robot.</li>
+                        </ul>
+            
+                        <h4>How Permissions Look</h4>
+                        <p>
+                            When you type <code>ls -l</code>, you might see something like this:
+                        </p>
+                        <pre><code>-rw-r--r-- 1 alice users 1234 Apr 14 10:00 notes.txt</code></pre>
+                        <ul>
+                            <li><code>-rw-r--r--</code> means:
+                                <ul>
+                                    <li><code>rw-</code> – Owner can read & write</li>
+                                    <li><code>r--</code> – Group can only read</li>
+                                    <li><code>r--</code> – Others can only read</li>
+                                </ul>
+                            </li>
+                        </ul>
+            
+                        <h4>Changing Permissions</h4>
+                        <ul>
+                            <li><code>chmod</code> – Changes who can do what with the file</li>
+                            <li><code>chown</code> – Changes who owns the file</li>
+                            <li><code>chgrp</code> – Changes the group of the file</li>
+                        </ul>
+            
+                        <h4>Examples</h4>
+                        <ul>
+                            <li><code>chmod 755 script.sh</code> – Owner can do everything, others can read & run it</li>
+                            <li><code>chmod 600 secret.txt</code> – Only the owner can read & write it</li>
+                            <li><code>chown bob:bob file.txt</code> – Makes Bob the new owner</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>     
+            
+            <!-- Shells -->
+            <section id="shell-basics" class="bg-secondary bg-opacity-25 rounded p-4 mb-4">
+                <div class="card bg-dark text-light">
+                    <div class="card-body">
+                        <h2 class="card-title">Understanding the Linux Shell</h2>
+                        <p>
+                            The shell is a <code>command-line interface (CLI)</code> that allows users to interact with the Linux operating system. It's like a translator between <code>you</code> and the computer, helping execute commands, run scripts, and automate tasks.
+                        </p>
+            
+                        <h4>What Does a Shell Do?</h4>
+                        <ul>
+                            <li>Interprets user commands and executes them</li>
+                            <li>Runs scripts to automate tasks</li>
+                            <li>Manages processes and system administration tasks</li>
+                            <li>Allows navigation through the file system</li>
+                        </ul>
+            
+                        <h4>Common Shells in Linux</h4>
+                        <table class="table table-dark table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Shell Name</th>
+                                    <th>Description</th>
+                                    <th>Command to Use</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>Bash</code> (Bourne Again Shell)</td>
+                                    <td>Default and most widely used shell on Linux</td>
+                                    <td><code>bash</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>Zsh</code> (Z Shell)</td>
+                                    <td>Extended version of Bash with better customization</td>
+                                    <td><code>zsh</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>Fish</code> (Friendly Interactive Shell)</td>
+                                    <td>User-friendly shell with auto-suggestions</td>
+                                    <td><code>fish</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>Dash</code> (Debian Almquist Shell)</td>
+                                    <td>Lightweight and fast shell used in system scripts</td>
+                                    <td><code>dash</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>Ksh</code> (KornShell)</td>
+                                    <td>Advanced scripting capabilities</td>
+                                    <td><code>ksh</code></td>
+                                </tr>
+                            </tbody>
+                        </table>
+            
+                        <h4>How to Check Your Default Shell?</h4>
+                        <p>Run this command in the terminal to see which shell is currently in use:</p>
+                        <code>echo $SHELL</code>
+            
+                        <h4>Switching to a Different Shell</h4>
+                        <p>To change your shell temporarily, type the shell name:</p>
+                        <code>zsh</code> (Switches to Zsh)
+                        
+                        <p>To set a new default shell permanently:</p>
+                        <code>chsh -s /bin/zsh</code> (Changes default shell to Zsh)
+            
+                        <hr class="bg-light">
+                        
+                        <h4>Fun Learning Challenge</h4>
+                        <ul>
+                            <li>Check your current shell and experiment with switching shells.</li>
+                            <li>Try customizing your shell with themes (like <code>oh-my-zsh</code> for Zsh).</li>
+                            <li>Create a basic shell script and execute it using Bash.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Files and Directories -->
+            <section id="files-directories" class="bg-secondary bg-opacity-25 rounded p-4 mb-4">
+                <div class="card bg-dark text-light">
+                    <div class="card-body">
+                        <h2 class="card-title">Working with Files and Directories</h2>
+                        <p>
+                            Managing files and directories in Linux is essential for navigating and organizing your system efficiently. Below are key commands used for viewing, editing, and manipulating files.
+                        </p>
+            
+                        <h4>Viewing and Editing Files</h4>
+                        <ul>
+                            <li><code>cat</code> – Displays the contents of a file in the terminal</li>
+                            <li><code>less</code> / <code>more</code> – Allows scrolling through large files without loading everything at once</li>
+                            <li><code>nano</code> – A simple and user-friendly text editor for editing files</li>
+                            <li><code>vim</code> – A powerful editor with advanced features (optional at this level)</li>
+                        </ul>
+                        <p>
+                            Example: <code>cat file.txt</code> will print the content of <code>file.txt</code> directly in the terminal.
+                            <div class="ms-3">
+                                <img src="img/cat.png" alt="cat command" class="img-fluid" style="max-width: 600px;">
+                            </div>
+                        </p>
+            
+                        <h4>Redirection and Piping</h4>
+                        <p>Linux allows powerful output control using <code>redirection and piping</code>:</p>
+                        <ul>
+                            <li><code>&gt</code> – Redirects output to a file (overwrites if it exists)</li>
+                            <li><code>&gt&gt</code> – Appends output to an existing file instead of overwriting</li>
+                            <li><code>|</code> – Sends output from one command to another command for processing</li>
+                            <li><code>&lt</code> – Takes input from a file for a command</li>
+                        </ul>
+                        <p>
+                            Example: <code>echo "Hello World" > myfile.txt</code> will create <code>myfile.txt</code> with the text "Hello World".  
+                        </br>
+                            Example: <code>ls -lah | grep ".txt"</code> will list only files ending with <code>.txt</code>.
+                        </p>
+                        <div class="ms-3">
+                            <img src="img/piping.png" alt="cat command" class="img-fluid" style="max-width: 600px;">
+                        </div>
+            
+                        <hr class="bg-light">
+            
+                        <h4>Practice Challenge</h4>
+                        <ul>
+                            <li>Use <code>cat</code> to view a file and then try <code>less</code> on a large file.</li>
+                            <li>Try editing a text file using <code>nano</code>.</li>
+                            <li>Redirect command output to a new file using <code>></code> and append using <code>>></code>.</li>
+                            <li>Pipe <code>ls</code> output into <code>grep</code> to filter for specific file types.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Networking Basics -->
+            <section id="networking-basics" class="bg-secondary bg-opacity-25 rounded p-4 mb-4">
+                <div class="card bg-dark text-light">
+                    <div class="card-body">
+                        <h2 class="card-title">Linux Networking Essentials</h2>
+                        <p>
+                            Networking is a crucial part of system administration and cybersecurity. Below are key commands used for checking IP addresses, testing connectivity, analyzing DNS queries, and managing system services.
+                        </p>
+            
+                        <h4>Checking IP Addresses</h4>
+                        <ul>
+                            <li><code>ip a</code> – Displays all network interfaces and assigned IP addresses</li>
+                            <li><code>ifconfig</code> – Shows network interface details (older but still used in many distributions)</li>
+                        </ul>
+                        <p>Example: <code>ip a</code> will list all IP addresses and interfaces.</p>
+            
+                        <h4>Testing Connectivity</h4>
+                        <ul>
+                            <li><code>ping</code> – Tests the reachability of a remote server by sending ICMP requests</li>
+                            <li><code>traceroute</code> – Tracks the path packets take to reach a destination</li>
+                            <li><code>netstat</code> – Displays active network connections and listening ports</li>
+                            <li><code>ss</code> – Alternative to <code>netstat</code> that provides more detailed socket statistics</li>
+                        </ul>
+                        <p>
+                            Example: <code>ping google.com</code> tests whether Google's servers are reachable.
+                        </p>
+            
+                        <h4>DNS Analysis</h4>
+                        <ul>
+                            <li><code>nslookup</code> – Queries DNS servers to find IP addresses</li>
+                            <li><code>dig</code> – Advanced DNS lookup tool for detailed analysis</li>
+                        </ul>
+                        <p>Example: <code>nslookup google.com</code> retrieves Google's IP address.</p>
+            
+                        <h4>Managing Services</h4>
+                        <ul>
+                            <li><code>systemctl</code> – Manages services on modern Linux distributions (systemd-based)</li>
+                            <li><code>service</code> – Older alternative for controlling system services</li>
+                        </ul>
+                        <p>Example: <code>systemctl status apache2</code> checks the status of the Apache web server.</p>
+            
+                        <hr class="bg-light">
+            
+                        <h4>Practice Challenge</h4>
+                        <ul>
+                            <li>Find your IP address using <code>ip a</code> or <code>ifconfig</code>.</li>
+                            <li>Test connectivity using <code>ping</code> and <code>traceroute</code>.</li>
+                            <li>Query DNS records using <code>nslookup</code> and <code>dig</code>.</li>
+                            <li>Check the status of a system service using <code>systemctl</code> or <code>service</code>.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Shell Scripting Basics -->
+            <section id="shell-scripting" class="bg-secondary bg-opacity-25 rounded p-4 mb-4">
+                <div class="card bg-dark text-light">
+                    <div class="card-body">
+                        <h2 class="card-title">Shell Scripting Basics</h2>
+                        <p>
+                            Shell scripting allows you to automate tasks, create system commands, and streamline workflows. Below are the essentials for getting started.
+                        </p>
+            
+                        <h4>Writing a Basic Shell Script</h4>
+                        <p>A shell script is simply a text file containing commands executed in order. Create a basic script:</p>
+                        <code>
+                            #!/bin/bash<br>
+                            echo "Hello, this is my first shell script!"
+                        </code>
+                        <p>Save this as <code>script.sh</code>.</p>
+            
+                        <h4>Making Scripts Executable</h4>
+                        <p>Before running a script, you must give it execution permissions:</p>
+                        <code>chmod +x script.sh</code>
+                        <p>Now, you can run it using:</p>
+                        <code>./script.sh</code>
+            
+                        <h4>Using Variables, Conditionals, and Loops (Intro)</h4>
+                        <ul>
+                            <li><code>VARIABLE="Hello"</code> – Defines a variable</li>
+                            <li><code>echo $VARIABLE</code> – Prints the variable</li>
+                            <li><code>if [ condition ]; then ... fi</code> – Basic conditional</li>
+                            <li><code>for var in list; do ... done</code> – Looping structure</li>
+                        </ul>
+                        <p>Example: Print numbers from 1 to 5 using a loop:</p>
+                        <code>
+                            for i in {1..5}; do<br>
+                            &nbsp;&nbsp;echo "Number: $i"<br>
+                            done
+                        </code>
+            
+                        <h4>Automating Simple Tasks</h4>
+                        <p>Shell scripts are great for automation. Example: Automatically backup a directory:</p>
+                        <code>
+                            #!/bin/bash<br>
+                            tar -czf backup.tar.gz /path/to/directory
+                        </code>
+                        <p>Run it, and it creates a backup archive!</p>
+            
+                        <hr class="bg-light">
+            
+                        <h4>Practice Challenge</h4>
+                        <ul>
+                            <li>Create a simple script that prints your name.</li>
+                            <li>Make the script executable and run it.</li>
+                            <li>Write a script that checks if a file exists using <code>if</code> condition.</li>
+                            <li>Automate a task using a loop (e.g., print numbers).</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Security Basics -->
+            <section id="security-basics" class="bg-secondary bg-opacity-25 rounded p-4 mb-4">
+                <div class="card bg-dark text-light">
+                    <div class="card-body">
+                        <h2 class="card-title">Basic Security Practices</h2>
+                        <p>
+                            Securing your Linux system is essential to protect files, prevent unauthorized access, and maintain system integrity. Below are key security practices to follow.
+                        </p>
+            
+                        <h4>File Permission Best Practices</h4>
+                        <p>Linux provides a permission system to control <code>who can read, modify, or execute files</code>. Use the following commands to manage file permissions:</p>
+                        <ul>
+                            <li><code>ls -l</code> – Displays detailed file permissions</li>
+                            <li><code>chmod</code> – Changes file access permissions</li>
+                            <li><code>chown</code> – Modifies file ownership</li>
+                            <li><code>umask</code> – Defines default permissions for new files</li>
+                        </ul>
+                        <p>
+                            Example: <code>chmod 700 myfile.txt</code> restricts access to only the file owner.
+                        </p>
+            
+                        <h4>Using <code>sudo</code> Responsibly</h4>
+                        <p>
+                            The <code>sudo</code> command allows users to execute privileged commands without logging in as <code>root</code>. Proper usage ensures security:
+                        </p>
+                        <ul>
+                            <li>Use <code>sudo</code> only when necessary to avoid accidental system changes.</li>
+                            <li>Restrict <code>sudo</code> access using the <code>/etc/sudoers</code> file.</li>
+                            <li>Monitor <code>sudo</code> activity using logs: <code>sudo cat /var/log/auth.log</code></li>
+                        </ul>
+                        <p>Example: <code>sudo apt update</code> updates the system package list.</p>
+            
+                        <h4>Difference Between <code>sudo</code>, <code>su</code>, and <code>doas</code></h4>
+                        <table class="table table-dark table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Command</th>
+                                    <th>Description</th>
+                                    <th>Usage Example</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>sudo</code></td>
+                                    <td>Runs a single command with administrative privileges</td>
+                                    <td><code>sudo apt install package</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>su</code></td>
+                                    <td>Switches to the root user (or another user)</td>
+                                    <td><code>su -</code> (Switch to root shell)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>doas</code></td>
+                                    <td>Lightweight alternative to sudo (used in OpenBSD and some Linux distributions)</td>
+                                    <td><code>doas ls /root</code></td>
+                                </tr>
+                            </tbody>
+                        </table>
+            
+                        <hr class="bg-light">
+            
+                        <h4>Practice Challenge</h4>
+                        <ul>
+                            <li>Check file permissions using <code>ls -l</code>.</li>
+                            <li>Modify a file's permissions using <code>chmod</code>.</li>
+                            <li>List your elevated privileges using <code>sudo</code>.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+        </div>
+    </main>
+</body>
+</html>

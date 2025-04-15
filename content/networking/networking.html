@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Basic Networking Course</title> 
+  <link rel="stylesheet" href="https://hackmyvm.eu/static/boot.css" />
+  <script defer src="script.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      background-color: #1a1a1a;
+    }
+
+    .sidebar {
+      width: 300px;
+      height: 100vh;
+      overflow-y: auto;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
+
+    main {
+      margin-left: 300px;
+      padding: 20px;
+      width: calc(100% - 300px);
+      overflow-x: hidden;
+    }
+
+    header.course-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    header.course-header img {
+      max-height: 100px;
+      border-radius: 10px;
+    }
+
+    .video-thumb {
+      width: 100%;
+      border-radius: 0.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+      }
+
+      main {
+        margin-left: 0;
+        width: 100%;
+      }
+
+      header.course-header {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+    <aside class="sidebar bg-dark text-light p-3">
+        <h2 class="text-center mb-4">Menu</h2>
+        <div class="menu-section mb-4">
+          <a href="../../index.php" class="btn btn-primary w-100">← Back to Academy</a>
+        </div>
+
+        <div class="menu-section mb-4">
+          <h3 class="text-light mb-2">Lessons</h3>
+          <ul class="list-unstyled ps-3">
+            <li><a href="#intro" class="btn btn-primary w-100 mb-1">Introduction to Networking</a></li>
+            <li><a href="#architecture" class="btn btn-primary w-100 mb-1">Client-Server Architecture</a></li>
+            <li><a href="#ports" class="btn btn-primary w-100 mb-1">Ports and IP Addresses</a></li>
+          </ul>
+        </div>
+
+        <div class="menu-section mb-4">
+            <h3 class="text-light mb-2">Videos</h3>
+            <ul class="list-unstyled ps-3">
+                <li class="mb-2">
+                    <a href="https://www.youtube.com/watch?v=3QhU9jd03a0" target="_blank" class="text-decoration-none">
+                        <img src="https://img.youtube.com/vi/3QhU9jd03a0/0.jpg" alt="Networking Basics Video" class="video-thumb" />
+                        <div class="text-light mt-1">Networking Basics Explained</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.youtube.com/watch?v=1dKjHUSQwGc" target="_blank" class="text-decoration-none">
+                        <img src="https://img.youtube.com/vi/1dKjHUSQwGc/0.jpg" alt="Client Server Architecture" class="video-thumb" />
+                        <div class="text-light mt-1">Client-Server Model Tutorial</div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="menu-section">
+          <h3 class="text-light mb-2">Resources</h3>
+          <ul class="list-unstyled ps-3">
+              <li><a href="https://www.cloudflare.com/learning/network-layer/what-is-a-client-server-model/" target="_blank" class="btn btn-secondary w-100 mb-1">Client-Server Model</a></li>
+              <li><a href="https://www.geeksforgeeks.org/types-of-computer-network/" target="_blank" class="btn btn-secondary w-100 mb-1">Network Types</a></li>
+              <li><a href="https://www.ibm.com/docs/en/zos/2.3.0?topic=overview-ip-addresses-ports" target="_blank" class="btn btn-secondary w-100">IP and Ports</a></li>
+          </ul>
+        </div>
+
+        <iframe src="https://discord.com/widget?id=756601039053914243&theme=dark" style="margin-top: 30px" width="100%" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+    </aside>
+
+    <main>
+        <div class="container-fluid">
+            <header class="course-header text-light my-4">
+                <img src="img/network.jpg" alt="Course Logo" />
+                <h1>Basic Networking Course</h1>
+            </header>
+
+            <section id="intro" class="bg-secondary bg-opacity-25 rounded p-4 mb-4">
+              <div class="card bg-dark text-light">
+                  <div class="card-body d-flex justify-content-between align-items-center">
+                      <div class="flex-grow-1">
+                          <h2 class="card-title">Introduction to Networking</h2>
+                          <p>
+                              Networking is the practice of connecting computers and other devices to share resources and information. It forms the foundation of the internet, company intranets, and communication systems.
+                          </p>
+                          <p>
+                              In this course, you'll learn basic networking principles with a focus on client-server architecture, IP addressing, and how computers communicate using ports and protocols.
+                          </p>
+                      </div>
+                      <div class="ms-3">
+                          <img src="img/logo.png" alt="Logo" class="img-fluid" style="max-width: 800px;">
+                      </div>
+                  </div>
+              </div>
+          </section>          
+
+            <section id="architecture" class="bg-secondary bg-opacity-25 rounded p-4 mb-4">
+                <div class="card bg-dark text-light">
+                    <div class="card-body">
+                        <h2 class="card-title">Client-Server Architecture</h2>
+                        <p>
+                            The client-server model is a distributed application structure that separates tasks between providers (servers) and requesters (clients). Clients initiate communication while servers await requests.
+                        </p>
+                        <p>
+                            Common examples include web browsers (clients) communicating with web servers or email clients fetching emails from mail servers.
+                        </p>
+                        <h4>🔌 Real-Life Examples</h4>
+                        <ul>
+                            <li>Web Browsing (Client: Browser, Server: Web Server)</li>
+                            <li>Email (Client: Email App, Server: SMTP/IMAP Server)</li>
+                            <li>File Transfers (Client: FTP Client, Server: FTP Server)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="ports" class="bg-secondary bg-opacity-25 rounded p-4 mb-4">
+                <div class="card bg-dark text-light">
+                    <div class="card-body">
+                        <h2 class="card-title">Ports and IP Addresses</h2>
+                        <p>
+                            Every device on a network has a unique IP address. To manage multiple connections and services, computers also use ports (numbered from 0 to 65535).
+                        </p>
+                        <h4>🛠 Common Port Numbers</h4>
+                        <ul>
+                            <li>HTTP – Port 80</li>
+                            <li>HTTPS – Port 443</li>
+                            <li>FTP – Ports 20/21</li>
+                            <li>SSH – Port 22</li>
+                            <li>DNS – Port 53</li>
+                        </ul>
+                        <p>
+                            Tools like <code>netstat</code>, <code>ss</code>, and <code>nmap</code> help inspect active ports and services.
+                        </p>
+                        <h4>🧪 Practice Challenge</h4>
+                        <ul>
+                            <li>Check which ports are open on your machine using <code>netstat -tulnp</code></li>
+                            <li>Find your device's IP address using <code>ip a</code></li>
+                            <li>Scan a local server with <code>nmap 127.0.0.1</code></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+</html>
