@@ -1,2 +1,3 @@
 # Academy
-HAcking Academy for Noobc
+HackMyVM
+https://hackmyvm.eu
